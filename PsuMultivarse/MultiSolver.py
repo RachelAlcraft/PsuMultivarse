@@ -38,6 +38,15 @@ class MultiSolver:
         else:
             return round(self._getValue1d(point,self.coeffs),4);
 
+    def getPoly(self):
+        if self.dim == 3:
+            return self._getPoly3d()
+        elif self.dim == 2:
+            return self._getPoly2d()
+        else:
+            return self._getPoly1d()
+
+
     def getValueDx(self,point, diffs):
         vals = self.coeffs
         if len(self.coeffs.shape) == 3:
@@ -204,6 +213,66 @@ class MultiSolver:
                 for k in range(1, coeffs.shape[2]):
                     newcoeffs[i,j, k-1] = coeffs[i, j, k] * k;
         return newcoeffs;
+
+    def _getPoly3d(self):
+        poly = ''
+        for i in range(0, self.coeffs.shape[0]):
+            for j in range(0, self.coeffs.shape[1]):
+                for k in range(0, self.coeffs.shape[2]):
+                    cf = self.coeffs[i,j,k]
+                    if cf != 0:
+                        if poly != '':
+                            poly += ' + '
+                        poly += str(self.coeffs[i,j,k])
+                        if i > 0:
+                            poly += 'x'
+                            if i > 1:
+                                poly += '^' + str(i)
+                        if j > 0:
+                            poly += 'y'
+                            if j > 1:
+                                poly += '^' + str(j)
+                        if k > 0:
+                            poly += 'z'
+                            if j > 1:
+                                poly += '^' + str(k)
+
+        return poly;
+
+    def _getPoly2d(self):
+        poly = ''
+        for i in range(0, self.coeffs.shape[0]):
+            for j in range(0, self.coeffs.shape[1]):
+                cf = self.coeffs[i,j]
+                if cf != 0:
+                    if poly != '':
+                        poly += ' + '
+                    poly += str(self.coeffs[i,j])
+                    if i > 0:
+                        poly += 'x'
+                        if i > 1:
+                            poly += '^' + str(i)
+                    if j > 0:
+                        poly += 'y'
+                        if j > 1:
+                            poly += '^' + str(j)
+
+        return poly;
+
+    def _getPoly1d(self):
+        poly = ''
+        for i in range(0, self.coeffs.shape[0]):
+            cf = self.coeffs[i]
+            if cf != 0:
+                if poly != '':
+                    poly += ' + '
+                poly += str(self.coeffs[i])
+                if i > 0:
+                    poly += 'x'
+                    if i > 1:
+                        poly += '^' + str(i)
+
+        return poly;
 
 
 
