@@ -1,8 +1,6 @@
 '''
  -- ©Rachel Alcraft 2021, PsuMultivarse --
-
-
-
+This class fits a 12/2d/3d polynomial to the given values and returns the value of a partial derivative
  '''
 
 import math

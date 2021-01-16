@@ -2,8 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a9ad4f27-353f-423e-a32a-1e462582c8af" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/PsuMultivarse/Interpolator.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/PsuMultivarse/tests/Example03.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/PsuMultivarse/MultiSolver.py" beforeDir="false" afterPath="$PROJECT_DIR$/PsuMultivarse/MultiSolver.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PsuMultivarse/tests/Example02.py" beforeDir="false" afterPath="$PROJECT_DIR$/PsuMultivarse/tests/Example02.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PsuMultivarse/PolySolver.py" beforeDir="false" afterPath="$PROJECT_DIR$/PsuMultivarse/PolySolver.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -15,14 +17,18 @@
     <leaf>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/PsuMultivarse/PolySolver.py">
-          <provider selected="true" editor-type-id="text-editor" />
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <caret selection-end-line="3" selection-end-column="4" />
+            </state>
+          </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/PsuMultivarse/MultiSolver.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3774">
-              <caret line="222" column="31" selection-start-line="222" selection-start-column="31" selection-end-line="222" selection-end-column="31" />
+            <state relative-caret-position="85">
+              <caret line="5" selection-start-line="5" selection-end-line="36" selection-end-column="64" />
               <folding>
                 <element signature="e#56#67#0" expanded="true" />
               </folding>
@@ -42,8 +48,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/PsuMultivarse/tests/Example02.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="365">
-              <caret line="41" column="19" selection-start-line="41" selection-start-column="19" selection-end-line="41" selection-end-column="19" />
+            <state>
+              <caret selection-end-line="3" selection-end-column="3" />
               <folding>
                 <element signature="e#88#99#0" expanded="true" />
               </folding>
@@ -51,11 +57,32 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/PsuMultivarse/tests/Example01.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="221">
-              <caret line="22" column="27" lean-forward="true" selection-start-line="22" selection-start-column="27" selection-end-line="22" selection-end-column="27" />
+            <state relative-caret-position="374">
+              <caret line="31" column="25" lean-forward="true" selection-start-line="31" selection-start-column="25" selection-end-line="31" selection-end-column="25" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/PsuMultivarse/Interpolator.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="374">
+              <caret line="22" column="16" lean-forward="true" selection-start-line="22" selection-start-column="16" selection-end-line="22" selection-end-column="16" />
+              <folding>
+                <element signature="e#439#450#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/PsuMultivarse/tests/Example03.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="51">
+              <caret line="3" column="3" lean-forward="true" selection-start-line="3" selection-start-column="3" selection-end-line="3" selection-end-column="3" />
             </state>
           </provider>
         </entry>
@@ -82,18 +109,11 @@
       <list>
         <option value="$PROJECT_DIR$/PsuMultivarse/tests/Example01.py" />
         <option value="$PROJECT_DIR$/PsuMultivarse/MatrixInvariant.py" />
-        <option value="$PROJECT_DIR$/PsuMultivarse/MultiSolver.py" />
         <option value="$PROJECT_DIR$/PsuMultivarse/tests/Example02.py" />
-      </list>
-    </option>
-  </component>
-  <component name="ProjectConfigurationFiles">
-    <option name="files">
-      <list>
-        <option value="$PROJECT_DIR$/.idea/PsuMultivarse.iml" />
-        <option value="$PROJECT_DIR$/.idea/vcs.xml" />
-        <option value="$PROJECT_DIR$/.idea/misc.xml" />
-        <option value="$PROJECT_DIR$/.idea/modules.xml" />
+        <option value="$PROJECT_DIR$/PsuMultivarse/MultiSolver.py" />
+        <option value="$PROJECT_DIR$/PsuMultivarse/PolySolver.py" />
+        <option value="$PROJECT_DIR$/PsuMultivarse/Interpolator.py" />
+        <option value="$PROJECT_DIR$/PsuMultivarse/tests/Example03.py" />
       </list>
     </option>
   </component>
@@ -243,7 +263,7 @@
     <editor active="true" />
     <layout>
       <window_info id="Favorites" side_tool="true" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.17702845" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.17702845" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Version Control" />
       <window_info anchor="bottom" id="Python Console" />
@@ -251,7 +271,7 @@
       <window_info anchor="bottom" id="Event Log" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -262,8 +282,12 @@
     </layout>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/PsuMultivarse/PolySolver.py">
-      <provider selected="true" editor-type-id="text-editor" />
+    <entry file="file://$PROJECT_DIR$/PsuMultivarse/tests/Example01.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="31" column="25" lean-forward="true" selection-start-line="31" selection-start-column="25" selection-end-line="31" selection-end-column="25" />
+        </state>
+      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/PsuMultivarse/MatrixInvariant.py">
       <provider selected="true" editor-type-id="text-editor">
@@ -272,30 +296,47 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/PsuMultivarse/PolySolver.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret selection-end-line="3" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/PsuMultivarse/MultiSolver.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3774">
-          <caret line="222" column="31" selection-start-line="222" selection-start-column="31" selection-end-line="222" selection-end-column="31" />
+        <state relative-caret-position="85">
+          <caret line="5" selection-start-line="5" selection-end-line="36" selection-end-column="64" />
           <folding>
             <element signature="e#56#67#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/PsuMultivarse/Interpolator.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="22" column="16" lean-forward="true" selection-start-line="22" selection-start-column="16" selection-end-line="22" selection-end-column="16" />
+          <folding>
+            <element signature="e#439#450#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/PsuMultivarse/tests/Example02.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="365">
-          <caret line="41" column="19" selection-start-line="41" selection-start-column="19" selection-end-line="41" selection-end-column="19" />
+        <state>
+          <caret selection-end-line="3" selection-end-column="3" />
           <folding>
             <element signature="e#88#99#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/PsuMultivarse/tests/Example01.py">
+    <entry file="file://$PROJECT_DIR$/PsuMultivarse/tests/Example03.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="22" column="27" lean-forward="true" selection-start-line="22" selection-start-column="27" selection-end-line="22" selection-end-column="27" />
+        <state relative-caret-position="51">
+          <caret line="3" column="3" lean-forward="true" selection-start-line="3" selection-start-column="3" selection-end-line="3" selection-end-column="3" />
         </state>
       </provider>
     </entry>
