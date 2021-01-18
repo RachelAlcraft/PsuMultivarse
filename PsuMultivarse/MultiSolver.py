@@ -87,6 +87,7 @@ class MultiSolver:
             coeff = coeffs[i];
             val = coeff * math.pow(point[0], i);
             value += val
+        #print('2d', point, coeffs, value)
         return value
 
     def _getValue2d(self,point,coeffs):
@@ -96,6 +97,7 @@ class MultiSolver:
                 coeff = coeffs[i, j];
                 val = coeff * math.pow(point[0], i) * math.pow(point[1], j)
                 value += val
+        #print('2d',point,coeffs,value)
         return value
 
     def _getValue3d(self,point,coeffs):
