@@ -40,7 +40,8 @@ class Interpolator:
             return solver.getValue(point)
         return 0
 
-    def getValue(self,point, degree):
+
+    def getSubValues(self,point, degree):
         '''
         :param point: the [x] or [x,y] or [x,y,z] tuple
         :param degree: the polynomial fit degree, must be an odd number, 1 is linear, 3 is spline etc
@@ -55,49 +56,75 @@ class Interpolator:
                 subvalues, adjpoint = self._getSubValues2d(point,degree)
             else:
                 subvalues, adjpoint = self._getSubValues1d(point,degree)
-            solver = ms.MultiSolver(subvalues)
-            return solver.getValue(adjpoint)
+            return subvalues, adjpoint
 
         return 0
+
+    def getValue(self,point, degree):
+        '''
+        :param point: the [x] or [x,y] or [x,y,z] tuple
+        :param degree: the polynomial fit degree, must be an odd number, 1 is linear, 3 is spline etc
+        :return: the interpolated value
+        '''
+        subvals,adjpoint = self.getSubValues(point,degree)
+        solver = ms.MultiSolver(subvals)
+        return solver.getValue(adjpoint)
+
+
+    def getValueD(self,point, degree, diffs):
+        '''
+        :param point: the [x] or [x,y] or [x,y,z] tuple
+        :param degree: the polynomial fit degree, must be an odd number, 1 is linear, 3 is spline etc
+        :return: the interpolated value
+        '''
+        subvals, adjpoint = self.getSubValues(point, degree)
+        solver = ms.MultiSolver(subvals)
+        return solver.getValueD(adjpoint,diffs)
+
+    def getSlice(self, points, width,gaps):
+        '''
+        This returns a 2d slice of points where the centre is given and for 2d a linear point is also given, for 3d a planary point is also neeed.
+        The square is drawn around these points and then interpolated at the specified gap. Note it need not be orthogonal to the axes.
+        :param points:
+        :param width:
+        :param gaps:
+        :return:
+        '''
+        return 0
+
 
     #####################################################################
     ###### Internal Functions #########################################
     #####################################################################
 
     def _getSubValues1d(self,point, degree):
-        xcorner = math.floor(point[0])
-        left = math.floor(degree/2)
-        right = math.ceil(degree/2)
+        floorX = int(math.floor(point[0]))
+        half = math.floor(degree / 2)
+        fractionX = point[0] - floorX
+        cornerX = floorX - half
+        length = degree + 1
+        outofRange = False
 
-        if xcorner == point[0]: #then it is a gridpoint so we don't have any interpolation to do
-            subs = np.zeros([1])
-            subs[0] = self.values[xcorner]
-            adjpoint = [point[0] - left]
-            return subs, adjpoint
+        for i in range(cornerX, cornerX + length):
+            if i < 0:
+                outofRange = True
+            if i >= self.values.shape[0]:
+                outofRange = True
+
+        if outofRange:
+            if degree > 1:
+                return self._getSubValues1d(point, degree - 1)
+            else:
+                subs = np.zeros([0])
+                adjpoint = [0]
+
         else:
-            xLower = xcorner-left
-            xUpper = xcorner + right
-            if xLower < 0:
-                left = xcorner-0
-                right = left+1
-                xLower = 0
-                xUpper = xcorner + right
-                xwidth = 1
-            if xUpper > self.values.shape[0]-1:
-                xUpper = self.values.shape[0]-1
-                right = xUpper-xcorner
-                left = right-1
-                xLower = xcorner-left
-                ywidth = 1
+            subs = self.values[cornerX:cornerX + length]
+            adjpoint = [half + fractionX]
 
-            subs = np.zeros([xUpper-xLower+1])
-            for i in range(xLower,xUpper+1):
-                subs[i-xLower] = self.values[i]
+        return subs, adjpoint
 
-            adjpoint = [point[0]-xcorner+left]
-            #print(subs,adjpoint,left,right,xcorner)
-            return subs,adjpoint
-######################################################################################
+    ######################################################################################
 
     def _getSubValues2d(self,point, degree):
         floorX = int(math.floor(point[0]))
@@ -131,6 +158,49 @@ class Interpolator:
         else:
             subs = self.values[cornerX:cornerX + length,cornerY:cornerY + length]
             adjpoint = [half + fractionX, half + fractionY]
+
+        return subs,adjpoint
+
+
+    def _getSubValues3d(self,point, degree):
+        floorX = int(math.floor(point[0]))
+        floorY = int(math.floor(point[1]))
+        floorZ = int(math.floor(point[2]))
+        half = math.floor(degree/2)
+        fractionX = point[0]-floorX
+        fractionY = point[1] - floorY
+        fractionZ = point[2] - floorZ
+        cornerX = floorX-half
+        cornerY = floorY - half
+        cornerZ = floorZ - half
+        length = degree + 1
+        outofRange = False
+
+        for i in range(cornerX,cornerX+length):
+            for j in range(cornerY, cornerY+length):
+                for k in range(cornerZ, cornerZ + length):
+                    if i < 0:
+                        outofRange = True
+                    if j < 0:
+                        outofRange = True
+                    if k < 0:
+                        outofRange = True
+                    if i >= self.values.shape[0]:
+                        outofRange = True
+                    if j >= self.values.shape[1]:
+                        outofRange = True
+                    if k >= self.values.shape[2]:
+                        outofRange = True
+
+        if outofRange:
+            if degree > 1:
+                return self._getSubValues3d(point,degree-1)
+            else:
+                subs = np.zeros([0])
+                adjpoint = [0]
+        else:
+            subs = self.values[cornerX:cornerX + length,cornerY:cornerY + length,cornerZ:cornerZ + length]
+            adjpoint = [half + fractionX, half + fractionY, half + fractionZ]
 
         return subs,adjpoint
 

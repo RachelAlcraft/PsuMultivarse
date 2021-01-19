@@ -1,5 +1,11 @@
 '''
  -- ©Rachel Alcraft 2021, PsuMultivarse --
+
+
+This test file simply gets lots of matrices :-)
+It tests only the MatrixInvariant class
+It is looking for speed to verify the singleton works and the speed in general of matrix calculation
+These matrices are constants and can be saved from here and re-used in other programs
 '''
 
 import time
@@ -10,10 +16,6 @@ def printTime(start,end,comment=''):
     print(timestring,comment)
 
 from PsuMultivarse import MatrixInvariant as mi
-
-
-
-# This test file simply gets lots of matrices :-)
 
 #We do this twice to demonstrate the singleton pattern works
 
@@ -54,3 +56,8 @@ mtx = minv.getMatrix([10,10,10])
 print(mtx)
 end = time.time()
 printTime(start,end)
+
+#Full documentation at http://pymsgbox.readthedocs.org/en/latest/
+#import pymsgbox
+#pymsgbox.alert('This is an alert!', 'Title')
+#response = pymsgbox.prompt('What is your name?')

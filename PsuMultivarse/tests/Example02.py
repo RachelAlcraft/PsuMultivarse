@@ -1,6 +1,10 @@
 '''
  -- ©Rachel Alcraft 2021, PsuMultivarse --
- A test file to try the MultiSolver
+
+
+ This script tests the MultiSolver class for accuracy. It shocks it to a large value to see where the numbers break down
+
+
 '''
 
 import time

@@ -45,18 +45,49 @@ class MultiSolver:
             return self._getPoly1d()
 
 
+    def getValueD(self,point, diffs):
+        vals = self.coeffs
+        if len(self.coeffs.shape) == 3:
+            valx = self.getValueDx(point,diffs)
+            valy = self.getValueDy(point, diffs)
+            valz = self.getValueDz(point, diffs)
+            if diffs%2 == 1:
+                return (abs(valx) + abs(valy) + abs(valz))/3
+            else:
+                return (valx+valy+valz)/3
+        elif len(self.coeffs.shape) == 2:
+            valx = self.getValueDx(point, diffs)
+            valy = self.getValueDy(point, diffs)
+            if diffs%2 == 1:
+                return (abs(valx) + abs(valy) ) / 2
+            else:
+                return (valx + valy  ) / 2
+        else:
+            valx = self.getValueDx(point, diffs)
+            if diffs%2 == 1:
+                return abs(valx)
+            else:
+                return valx
+
+
     def getValueDx(self,point, diffs):
         vals = self.coeffs
         if len(self.coeffs.shape) == 3:
             for i in range(0, diffs):
+                if vals.shape[0] <= 1:
+                    return 0
                 vals = self._diffWrtX3d(vals)
             return round(self._getValue3d(point,vals),4);
-        if len(self.coeffs.shape) == 2:
+        elif len(self.coeffs.shape) == 2:
             for i in range(0, diffs):
+                if vals.shape[0] <= 1:
+                    return 0
                 vals = self._diffWrtX2d(vals)
             return round(self._getValue2d(point,vals),4);
         else:
             for i in range(0, diffs):
+                if vals.shape[0] <= 1:
+                    return 0
                 vals = self._diffWrtX1d(vals)
             return round(self._getValue1d(point,vals),4);
 
@@ -64,16 +95,24 @@ class MultiSolver:
         vals = self.coeffs
         if len(self.coeffs.shape) == 3:
             for i in range(0, diffs):
+                if vals.shape[0] <= 1:
+                    return 0
                 vals = self._diffWrtY3d(vals)
             return round(self._getValue3d(point,vals),4);
         else:
             for i in range(0, diffs):
+                if vals.shape[0] <= 1:
+                    return 0
+                if vals.shape == 1:
+                    return 0
                 vals = self._diffWrtY2d(vals)
             return round(self._getValue2d(point,vals),4);
 
     def getValueDz(self,point, diffs):#only 3d
         vals = self.coeffs
         for i in range(0, diffs):
+            if vals.shape[0] <= 1:
+                return 0
             vals = self._diffWrtZ3d(vals)
         return round(self._getValue3d(point,vals),4);
 
@@ -200,7 +239,10 @@ class MultiSolver:
         return newcoeffs;
 
     def _diffWrtY2d(self, coeffs):
-        newcoeffs = np.zeros([coeffs.shape[0],coeffs.shape[1]-1])
+        if coeffs.shape[1]-1 < 1:
+            newcoeffs = np.zeros([coeffs.shape[0], 1])
+        else:
+            newcoeffs = np.zeros([coeffs.shape[0],coeffs.shape[1]-1])
         for i in range(0, coeffs.shape[0]):
             for j in range(1, coeffs.shape[1]):
                 newcoeffs[i,j-1] = coeffs[i, j] * j;
@@ -223,7 +265,7 @@ class MultiSolver:
                     if cf != 0:
                         if poly != '':
                             poly += ' + '
-                        poly += str(self.coeffs[i,j,k])
+                        poly += str(round(self.coeffs[i,j,k],2))
                         if i > 0:
                             poly += 'x'
                             if i > 1:
@@ -247,7 +289,7 @@ class MultiSolver:
                 if cf != 0:
                     if poly != '':
                         poly += ' + '
-                    poly += str(self.coeffs[i,j])
+                    poly += str(round(self.coeffs[i,j],2))
                     if i > 0:
                         poly += 'x'
                         if i > 1:
@@ -266,7 +308,7 @@ class MultiSolver:
             if cf != 0:
                 if poly != '':
                     poly += ' + '
-                poly += str(self.coeffs[i])
+                poly += str(round(self.coeffs[i],2))
                 if i > 0:
                     poly += 'x'
                     if i > 1:
