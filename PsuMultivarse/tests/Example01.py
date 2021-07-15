@@ -50,6 +50,12 @@ print(mtx)
 mtx = minv.getMatrix([6,1,1])
 print(mtx)
 
+# 5-degree 1d
+mtx = minv.getMatrix([4,4,1])
+print('------3 degree 2 dimensions----')
+print(mtx)
+print('----------')
+
 #Just something really big!
 start = time.time()
 mtx = minv.getMatrix([10,10,10])
