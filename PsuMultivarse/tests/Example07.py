@@ -15,7 +15,7 @@ from PsuMultivarse import MultiSolver as ms
 
 ## User Input #################
 ###############################
-degree = 7
+degree = 9
 ###############################
 #magnify eye
 pixels, reduce, magnify, pixeloffset = 256,0.1,10,1200
@@ -64,6 +64,7 @@ print(rows,cols)
 
 start = time.time()
 solvervals = np.zeros([rows,cols])
+solvervalslin = np.zeros([rows,cols])
 
 ir = 0
 for i in range(0,pixelsWide):
@@ -78,19 +79,30 @@ for i in range(0,pixelsWide):
 
                 if not solveropt:
                     solv = interp.getValue([vali,valj],degree)
+                    solvlin = interp.getValue([vali, valj], 1)
                 else:
                     subvals, adjpoint = interp.getSubValues([vali, valj], degree)
                     solver = ms.MultiSolver(subvals)
                     solv = solver.getValue(adjpoint)
+
+                    subvalslin, adjpointlin = interp.getSubValues([vali, valj], 1)
+                    solverlin = ms.MultiSolver(subvalslin)
+                    solvlin = solverlin.getValue(adjpointlin)
+
                 solvervals[ir,ic] = solv
+                solvervalslin[ir, ic] = solvlin
             ic += 1
     ir += 1
 
 plot = plt.figure(1)
-plt.title('Multivariate interpolated function')
-plt.imshow(solvervals,alpha=1, cmap='bone')
+plt.title('Multivariate linear interpolated function')
+plt.imshow(solvervalslin,alpha=1, cmap='bone')
 
 plot = plt.figure(2)
+plt.title('Multivariate interpolated function,degree=' + str(degree))
+plt.imshow(solvervals,alpha=1, cmap='bone')
+
+plot = plt.figure(3)
 plt.title('Multivariate Original Data')
 plt.imshow(vals,alpha=1, cmap='bone')
 
