@@ -1,2 +1,2 @@
 # PsuMultivarse
-Multivariant interpolation library
+Multivariate interpolation library
